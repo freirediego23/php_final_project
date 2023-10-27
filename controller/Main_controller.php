@@ -31,10 +31,18 @@ class Main_controller {
     } elseif ($alumno) {
       // User is an alumno
       // Perform actions for alumno
+      $data_alumno = Alumno::alumno_data($email, $password);
+      session_start();
+      $_SESSION["user"] = $alumno;
+      $_SESSION["data_alumno"] = $data_alumno;
       header("Location: /views/dash_alumno.php");
     } elseif ($maestro) {
       // User is a maestro
       // Perform actions for maestro
+      $data_maestro = Maestro::maestro_data($email, $password);
+      session_start();
+      $_SESSION["user"] = $maestro;
+      $_SESSION["data_maestro"] = $data_maestro;
       header("Location: /views/dash_maestro.php");
     } else {
       header("Location: /index.php");
@@ -42,19 +50,6 @@ class Main_controller {
       // Handle invalid login, show an error message, or redirect to a login error page
     }
 
-    
-      //if ($roles === "admin") {
-      //session_start();
-     // header("Location: /views/dash_admin.php");
-    // } //if ($roles === "maestro") {
-    //   //session_start();
-    //    header("Location: /views/dash_maestro.php");
-    // } if ($roles === "alumno") {
-    //    //session_start();
-    //    header("Location: /views/dash_alumno.php");
-    //  } else {
-    //    echo "There is no response of login";
-    //  }
 
   }
 }

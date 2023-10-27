@@ -11,6 +11,9 @@
   <h1 class="text-3xl font-bold underline">
     Dashboard for admin
   </h1>
+  <p>Puedes agregar, modificar, o remover registros de alumnos y profesores</p>
+
+
 </body>
 
 </html>
