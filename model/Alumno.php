@@ -30,4 +30,12 @@ class Alumno {
     
       return $info;
   }
+
+  public static function all_alumno(){
+    $query = "select * from alumnos";
+    $res = DB::query($query);
+    $info = $res->fetchAll(PDO::FETCH_ASSOC);
+    //if ($email === $info[0]["email"]) {
+      return $info;
+  }
 }

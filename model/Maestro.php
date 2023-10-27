@@ -41,5 +41,13 @@ class Maestro {
 
   }
 
+  public static function all_maestros(){
+    $query = "select * from maestros";
+    $res = DB::query($query);
+    $info = $res->fetchAll(PDO::FETCH_ASSOC);
+    //if ($email === $info[0]["email"]) {
+      return $info;
+  }
+
 
 }

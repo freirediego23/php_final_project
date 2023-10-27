@@ -3,6 +3,7 @@
 require_once($_SERVER["DOCUMENT_ROOT"] . "/model/Admin.php");
 require_once($_SERVER["DOCUMENT_ROOT"] . "/model/Maestro.php");
 require_once($_SERVER["DOCUMENT_ROOT"] . "/model/Alumno.php");
+require_once($_SERVER["DOCUMENT_ROOT"] . "/model/Clases.php");
 
 class Main_controller {
   
@@ -11,9 +12,13 @@ class Main_controller {
   include $_SERVER["DOCUMENT_ROOT"] . "/views/login.php";
   }
 
+  public function crear_page (){
+    include $_SERVER["DOCUMENT_ROOT"] . "/views/create_view.php";
+  }
+
   public function logger($data){
 
-   // extract($data);
+  
     var_dump($data);
 
     $email = $data['email'];
@@ -24,9 +29,23 @@ class Main_controller {
     $alumno = Alumno::login_alumno($email, $password);
     $maestro = Maestro::login_maestro($email, $password);
 
+    //Get all alumnos
+    $todosalumnos = Alumno::all_alumno();
+    // Get all classes listed
+    $classes = Clases::all_clases();
+    // Get all maestros listed
+    $todosmaestros = Maestro::all_maestros();
+
     if ($admin) {
       // User is an admin
       // Perform actions for admin
+      
+      session_start();
+      $_SESSION["user"] = $admin;
+      $_SESSION["alumnos"] = $todosalumnos;
+      $_SESSION["maestros"] = $todosmaestros;
+      $_SESSION["class"] = $classes;
+      var_dump($todosmaestros);
       header("Location: /views/dash_admin.php");
     } elseif ($alumno) {
       // User is an alumno
