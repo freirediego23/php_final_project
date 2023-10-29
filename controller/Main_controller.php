@@ -35,7 +35,9 @@ class Main_controller {
     $classes = Clases::all_clases();
     // Get all maestros listed
     $todosmaestros = Maestro::all_maestros();
+    $data_alumno = Alumno::alumno_data($email, $password);
 
+    var_dump($data_alumno);
     if ($admin) {
       // User is an admin
       // Perform actions for admin
@@ -50,7 +52,7 @@ class Main_controller {
     } elseif ($alumno) {
       // User is an alumno
       // Perform actions for alumno
-      $data_alumno = Alumno::alumno_data($email, $password);
+      
       session_start();
       $_SESSION["user"] = $alumno;
       $_SESSION["data_alumno"] = $data_alumno;

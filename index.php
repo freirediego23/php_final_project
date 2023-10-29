@@ -2,8 +2,10 @@
 
 require_once($_SERVER["DOCUMENT_ROOT"] . "/controller/Main_controller.php");
 
-$controller_main = new Main_controller();
+require_once($_SERVER["DOCUMENT_ROOT"] . "/controller/Crud_controller.php");
 
+$controller_main = new Main_controller();
+$controller_crud = new Crud_controller();
 
 
 // ----- URL del navegador -----
@@ -34,11 +36,18 @@ if($_SERVER["REQUEST_METHOD"]=== "POST"){
     case "/log":
       $controller_main->logger($_POST);
       break;
-    //Acutaliza controlador y Model para la funcion para crear usuarios  
+    //Actualiza controlador y Model para la funcion para crear usuarios  
     case '/create':
-      $controller_main->logger($_POST);
+      $controller_crud->adding($_POST);
       break;
 
+    case '/delete_alumno';
+      $controller_crud->deleting($_POST["alumno_id"]);
+      break;
+    
+    case '/delete_maestro';
+      $controller_crud->deleting_maestro($_POST["maestro_id"]);
+      break;
       
     default:
       echo "No se encuentra la URL";

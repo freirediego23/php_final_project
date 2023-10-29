@@ -50,4 +50,30 @@ class Maestro {
   }
 
 
+  // Agregar un maestro
+  public static function add_maestro($data){
+    extract($data);
+    $query = "insert into maestros(nombres, email, passwords, rol_type) values ('$nombres', '$email', '$password', '$roles')";
+
+    $res = DB::query($query);
+    if ($res) {
+      return true;
+    }
+
+  }
+
+
+  // Agregar un maestro
+  public static function erase_maestro($id){
+    
+    $query = "delete from maestros where id =$id";
+
+    $res = DB::query($query);
+    if ($res) {
+      return true;
+    }
+
+  }
+
+
 }

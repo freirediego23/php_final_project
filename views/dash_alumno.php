@@ -9,7 +9,12 @@ if (!isset($_SESSION["user"])) {
 
 $datos_alumno = $_SESSION["data_alumno"];
 $alumno = $_SESSION["user"];
+
+var_dump($datos_alumno);
+var_dump($alumno);
 ?>
+
+
 
 <html lang="en">
 
@@ -35,8 +40,8 @@ $alumno = $_SESSION["user"];
     <tbody>
       <?php foreach($datos_alumno as $entry){ ?>
       <tr>
-        <td><?php echo $entry['nombres']; ?></td>
-        <td><?php echo $entry['nombre_clase']; ?></td>
+        <td><?php echo $entry["nombres"]; ?></td>
+        <td><?php echo $entry["nombre_clase"]; ?></td>
       </tr>
       <?php }?>
     </tbody>

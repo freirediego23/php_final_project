@@ -10,6 +10,12 @@
 
 <body>
 
+  <h2>Edita Informacion de Usuarios</h2>
+
+  <form action="/update" method="post">
+    <label for="">Nombres</label>
+
+  </form>
 </body>
 
 </html>
