@@ -63,7 +63,7 @@ class Maestro {
   }
 
 
-  // Agregar un maestro
+  // BORRAR un maestro
   public static function erase_maestro($id){
     
     $query = "delete from maestros where id =$id";
@@ -75,5 +75,66 @@ class Maestro {
 
   }
 
+  // Encontrar un maestro
+  public static function find_maestro($id){
+    
+    $query = "select * from maestros where id =$id;";
+
+    $res = DB::query($query);
+    $data = $res->fetchAll(PDO::FETCH_ASSOC);
+    return $data;
+
+  }
+
+  // Actualizar un maestro
+  public static function actualiza_maestro($data){
+    $id = $data["id"];
+    $nombre = $data["nombre"];
+    $email = $data["email"];
+    $passwrd = $data["password"];
+    $rol = $data["roles"];
+
+    $query = "update maestros set nombres = '$nombre', email = '$email', passwords = '$passwrd', rol_type = '$rol' where id =$id;";
+
+    $res = DB::query($query);
+    if ($res) {
+      return $res;
+    }
+    // $datos = $res->fetchAll(PDO::FETCH_ASSOC);
+    // return $datos;
+
+  }
+
+  public static function update_rol_type_maestro($id, $rol_type) {
+    $query = "UPDATE maestros SET rol_type = '$rol_type' WHERE id = '$id'";
+    
+    // Execute the query with prepared statements
+    $res = DB::query($query);
+    
+    return $res;
+}
+
+// De maestro a alumno/////////
+
+public static function update_rol_type_alumno($id, $rol_type){
+  $query = "UPDATE alumnos SET rol_type = '$rol_type' WHERE id = '$id'";
+
+  $res = DB::query($query);
+  return $res;
+
+}
+
+// Agrega como alumno en tabla alumno si cambia el rol
+
+public static function add_table_alumno($data){
+  extract($data);
+  $query = "insert into alumnos(nombres, email, passwords, rol_type) values ('$nombre', '$email', '$password', '$roles')";
+
+  $res = DB::query($query);
+  if ($res) {
+    return $res;
+  }
+}
+  
 
 }

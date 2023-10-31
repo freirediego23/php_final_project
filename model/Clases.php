@@ -33,5 +33,59 @@ class Clases {
     }
   }
 
+
+  // AGREGAR CLASE NUEVA EN TABLA CLASES
+  public static function add_class($info) {
+    extract($info);
+
+    $query = "INSERT INTO clases (nombre_clase) VALUES ('$nombre_clase')";
+    $res = DB::query($query);
+  
+    if ($res) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  // BORRA CLASE EN TABLA CLASES
+  public static function deleting_class($id) {
+   
+
+    $query = "delete from clases where id =$id";
+    $res = DB::query($query);
+
+    if($res){
+      return $res;
+    }
+  }
+
+  // Encontrar una clase
+  public static function find_class($id){
+    
+    $query = "select * from clases where id =$id;";
+
+    $res = DB::query($query);
+    $data = $res->fetchAll(PDO::FETCH_ASSOC);
+    return $data;
+
+  }
+
+  // Actualizar una clase
+  public static function update_class($info){
+    
+    $id = $info["id"];
+    $nombre = $info["nombre"];
+   
+    
+    $query = "update clases set nombre_clase = '$nombre' where id =$id;";
+
+    $res = DB::query($query);
+
+    if ($res) {
+      return $res;
+    }
+
+  }
   
 }

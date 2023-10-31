@@ -81,4 +81,71 @@ class Alumno {
     }
   }
 
+  // Encontrar un alumno
+  public static function find_alumno($id){
+    
+    $query = "select * from alumnos where id =$id;";
+
+    $res = DB::query($query);
+    $data = $res->fetchAll(PDO::FETCH_ASSOC);
+    return $data;
+
+  }
+
+  // Actualizar un alumno
+  public static function actualiza_alumno($data){
+
+    $id = $data["id"];
+    $nombre = $data["nombre"];
+    $email = $data["email"];
+    $passwrd = $data["password"];
+    $rol = $data["roles"];
+    
+    $query = "update alumnos set nombres = '$nombre', email = '$email', passwords = '$passwrd', rol_type = '$rol' where id =$id;";
+
+    $res = DB::query($query);
+
+    if ($res) {
+      return $res;
+    }
+
+    // $data = $res->fetchAll(PDO::FETCH_ASSOC);
+    // return $data;
+
+  }
+
+  public static function update_rol_type($id, $rol_type) {
+    $query = "UPDATE alumnos SET rol_type = '$rol_type' WHERE id = '$id'";
+    
+    // Execute the query with prepared statements
+    $res = DB::query($query);
+    
+    return $res;
+}
+
+// Adding updated maestro to a class connected with students 
+// public static function update_clase_maestro($id, $clase_id) {
+//   $query = "INSERT into clases_maestros (maestro_id, clase_id) values ('$id', '$clase_id')";
+  
+//   // Execute the query with prepared statements
+//   $res = DB::query($query);
+//   if ($res) {
+//     return $res;
+//   }
+  
+// }
+
+
+// Agregar un maestro
+public static function add_table_master($data){
+  extract($data);
+  $query = "insert into maestros(nombres, email, passwords, rol_type) values ('$nombre', '$email', '$password', '$roles')";
+
+  $res = DB::query($query);
+  if ($res) {
+    return $res;
+  }
+
+}
+
 }

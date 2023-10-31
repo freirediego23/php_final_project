@@ -16,6 +16,10 @@ class Main_controller {
     include $_SERVER["DOCUMENT_ROOT"] . "/views/create_view.php";
   }
 
+  public function crear_class_page(){
+    include $_SERVER["DOCUMENT_ROOT"] . "/views/create_class.php";
+  }
+
   public function logger($data){
 
   
